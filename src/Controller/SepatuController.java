@@ -1,7 +1,9 @@
 package Controller;
 import Entity.*;
-import Model.*;
+import Model.SepatuModel;
+import View.AllObjekController;
 
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public class SepatuController {
@@ -16,7 +18,7 @@ public class SepatuController {
 
     }
 
-    public void insert(int KodeBarang, String nama, String merk,String warna, String Gender, String Jenis){
+    public void insert( int KodeBarang, String nama, String merk,String warna, String Gender, String Jenis){
         Sepatu sepatu = new Sepatu();
         sepatu.setKodebarang(KodeBarang);
         sepatu.setNama(nama);
@@ -27,7 +29,7 @@ public class SepatuController {
         sepatu_model.insert(sepatu);
     }
 
-    public void update(int index,int KodeBarang, String nama, String merk,String warna, String Gender, String Jenis){
+    public void update(int index, int KodeBarang, String nama, String merk,String warna, String Gender, String Jenis){
         Sepatu sepatu = new Sepatu();
         sepatu.setKodebarang(KodeBarang);
         sepatu.setNama(nama);
@@ -38,23 +40,42 @@ public class SepatuController {
         sepatu_model.update(index,sepatu);
     }
 
-    public void delete(int index){sepatu_model.delete(index);
+    public DefaultTableModel listbuku(){
+        DefaultTableModel dtmlisttas = new DefaultTableModel();
+        Object[] kolom ={"Kode","Nama","Merk","Warna","Jenis","Gender"};
+        dtmlisttas.setColumnIdentifiers(kolom);
+        int size = AllObjekController.sepatu_c.view().size();
+        for (int i=0; i<size; i++){
+            Object [] tas = new Object[6];
+            tas[0] = AllObjekController.sepatu_c.sepatu_model.getDataSepatu().get(i).getKodeBarang();
+            tas[1] = AllObjekController.sepatu_c.view().get(i).getNama();
+            tas[2] = AllObjekController.sepatu_c.view().get(i).getMerk();
+            tas[3] = AllObjekController.sepatu_c.view().get(i).getWarna();
+            tas[4] = AllObjekController.sepatu_c.view().get(i).getJenis();
+            tas[5] = AllObjekController.sepatu_c.view().get(i).getGender();
+            dtmlisttas.addRow(tas);
+        }
+        return dtmlisttas;
     }
 
-    public int cekBuku(String KodeBarang){
-        int keterangan = -1;
-        if(sepatu_model.getDataSepatu().size()>0){
-            for(int i=0;i<sepatu_model.getDataSepatu().size();i++){
-                if(KodeBarang.equals(sepatu_model.getDataSepatu().get(i).getKodeBarang())){
-                    keterangan = i;
-                    break;
-                }else{
-                    keterangan = -1;
-                }
-            }
-        }
-        return keterangan;
+    public void delete(int index){
+        sepatu_model.delete(index);
     }
+
+//    public int cekBuku(String KodeBarang){
+//        int keterangan = -1;
+//        if(tas_model.getDataTas().size()>0){
+//            for(int i=0;i<tas_model.getDataTas().size();i++){
+//                if(KodeBarang.equals(tas_model.getDataTas().get(i).getKodeBarang())){
+//                    keterangan = i;
+//                    break;
+//                }else{
+//                    keterangan = -1;
+//                }
+//            }
+//        }
+//        return keterangan;
+//    }
 
     public Sepatu lihatDaftarSepatu(int index){
         return sepatu_model.getDataSepatu().get(index);

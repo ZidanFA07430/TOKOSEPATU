@@ -1,10 +1,10 @@
 package View;
 
-import Controller.SepatuController;
-
 import java.util.Scanner;
+import Controller.*;
+import View.AllObjekController;
 
-public class SepatuPage_CLI {
+public class SepatuPage {
     Scanner input = new Scanner(System.in);
     public SepatuController sepatu = new SepatuController();
 
@@ -15,7 +15,7 @@ public class SepatuPage_CLI {
                     +" == Menu Utama == "+"\n"
                     +"1. VIEW SEPATU"+"\n"
                     +"2. INSERT SEPATU"+"\n"
-                    +"3. UPDATE Sepatu"+"\n"
+                    +"3. UPDATE SEPATU"+"\n"
                     +"4. DELETE SEPATU"+"\n"
                     +"0.Exit"+"\n"
                     +"Pilih : ");
@@ -47,6 +47,7 @@ public class SepatuPage_CLI {
         input.nextLine();
         System.out.print("Masukkan Tipe Sepatu : ");
         String nama = input.nextLine();
+        input.next();
         System.out.print("Masukkan Merk : ");
         String merk = input.nextLine();
         System.out.print("Masukkan Warna : ");
@@ -55,7 +56,7 @@ public class SepatuPage_CLI {
         String jenis = input.nextLine();
         System.out.print("Masukkan Gender : ");
         String gender = input.nextLine();
-        sepatu.insert(kode,nama,merk,warna,jenis,gender);
+        AllObjekController.sepatu_c.insert(kode,nama,merk,warna,jenis,gender);
     }
     public void Update(){
         System.out.print("index barang ke - : ");
@@ -73,7 +74,7 @@ public class SepatuPage_CLI {
         String jenis = input.nextLine();
         System.out.print("Masukkan Gender : ");
         String gender = input.nextLine();
-        sepatu.update(index,kode,nama,merk,warna,jenis,gender);
+        AllObjekController.sepatu_c.update(index,kode,nama,merk,warna,jenis,gender);
     }
 
     public void Delete(){
@@ -84,14 +85,14 @@ public class SepatuPage_CLI {
     }
 
     public void view(){
-        for(int i = 0; i<sepatu.sepatu_model.getDataSepatu().size(); i++){
+        for(int i = 0; i<AllObjekController.sepatu_c.view().size(); i++){
             System.out.println("========================");
-            System.out.println("kode : "+sepatu.sepatu_model.getDataSepatu().get(i).getKodeBarang());
-            System.out.println("Tipe : "+sepatu.sepatu_model.getDataSepatu().get(i).getNama());
-            System.out.println("Merk : "+sepatu.sepatu_model.getDataSepatu().get(i).getMerk());
-            System.out.println("Warna : "+sepatu.sepatu_model.getDataSepatu().get(i).getWarna());
-            System.out.println("Jenis : "+sepatu.sepatu_model.getDataSepatu().get(i).getJenis());
-            System.out.println("Gender : "+sepatu.sepatu_model.getDataSepatu().get(i).getGender());
+//            System.out.println("kode : "+AllObjekController.tas_c.view().get(i).getKodeBarang());
+            System.out.println("Tipe : "+AllObjekController.sepatu_c.view().get(i).getNama());
+            System.out.println("Merk : "+AllObjekController.sepatu_c.view().get(i).getMerk());
+            System.out.println("Warna : "+AllObjekController.sepatu_c.view().get(i).getWarna());
+            System.out.println("Jenis : "+AllObjekController.sepatu_c.view().get(i).getJenis());
+            System.out.println("Gender : "+AllObjekController.sepatu_c.view().get(i).getGender());
 
         }
         System.out.println("========================");
@@ -101,30 +102,30 @@ public class SepatuPage_CLI {
 
 
 //        public void UpdateTas(int KodeBarang, String nama, String merk, String warna, String gender, String jenis){
-//        Sepatu carisepatu = FindByID(KodeBarang);
+//        Tas caritas = FindByID(KodeBarang);
 //
-//        if(carisepatu != null){
+//        if(caritas != null){
 //            int index = indexData(caritas);
-//            objeksepatu.get(index).setKodebarang(KodeBarang);;
-//            objeksepatu.get(index).setNama(nama);
-//            objeksepatu.get(index).setMerk(merk);
-//            objeksepatu.get(index).setWarna(warna);
-//            objeksepatu.get(index).setJenis(jenis);
-//            objeksepatu.get(index).setGender(gender);
+//            objektas.get(index).setKodebarang(KodeBarang);;
+//            objektas.get(index).setNama(nama);
+//            objektas.get(index).setMerk(merk);
+//            objektas.get(index).setWarna(warna);
+//            objektas.get(index).setJenis(jenis);
+//            objektas.get(index).setGender(gender);
 //        }
 //    }
 //
 //
 //    public Tas FindByID(int kode){
-//        for (Entity.Sepatu sepatu:objeksepatu){
-//            if(Sepatu.kodeBarang == kode){
+//        for (Entity.Tas Tas:objektas){
+//            if(Tas.kodeBarang == kode){
 //                System.out.println("========================");
-//                System.out.println("kode : "+Sepatu.kodeBarang);
-//                System.out.println("Tipe : "+Sepatu.nama);
-//                System.out.println("Merk : "+Sepatu.merk);
-//                System.out.println("Warna : "+Sepatu.warna);
-//                System.out.println("Jenis : "+Sepatu.jenis);
-//                System.out.println("Gender : "+Sepatu.gender);
+//                System.out.println("kode : "+Tas.kodeBarang);
+//                System.out.println("Tipe : "+Tas.nama);
+//                System.out.println("Merk : "+Tas.merk);
+//                System.out.println("Warna : "+Tas.warna);
+//                System.out.println("Jenis : "+Tas.jenis);
+//                System.out.println("Gender : "+Tas.gender);
 //                return Tas;
 //            }
 //        }
@@ -141,14 +142,14 @@ public class SepatuPage_CLI {
 //    public void DeletebyID(int kode){
 //        Tas caritas = FindByID(kode);
 //        if(caritas!=null){
-//            objeksepatu.remove(carisepatu);
+//            objektas.remove(caritas);
 //        }
 //    }
 //
 
 //
 //    public int indexData(Tas Tas){
-//        int index = objeksepatu.indexOf(Sepatu);
+//        int index = objektas.indexOf(Tas);
 //        return index;
 //    }
 //

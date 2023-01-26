@@ -1,12 +1,12 @@
 package Entity;
 
 public class Sepatu {
-    public String nama;
-    public String merk;
-    public String warna;
-    public String jenis;
-    public String gender;
-    public int kodeBarang;
+    private String nama;
+    private String merk;
+    private String warna;
+    private String jenis;
+    private String gender;
+    private int kodeBarang;
 
     public Sepatu(int kodebarang, String nama , String merk, String warna , String jenis, String gender){
         this.nama = nama;
@@ -66,5 +66,14 @@ public class Sepatu {
 
     public void setGender(String Gender){
         this.gender = Gender;
+    }
+
+    public void insert(Sepatu sepatu) {
+    }
+
+    public void update(int index, Sepatu sepatu) {
+    }
+
+    public void delete(int index) {
     }
 }

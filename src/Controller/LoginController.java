@@ -1,5 +1,5 @@
 package Controller;
-import View.LoginPage_CLI;
+import View.LoginPage;
 
 public class LoginController {
     int id;
@@ -16,7 +16,7 @@ public class LoginController {
             System.out.println("BERHASIl");
         } else {
             System.out.println("GAGAL");
-            LoginPage_CLI lgn = new LoginPage_CLI();
+            LoginPage lgn = new LoginPage();
             lgn.login();
         }
     }

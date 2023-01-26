@@ -9,16 +9,19 @@ public class SepatuModel implements InterfaceModel {
     private static ArrayList<Sepatu> ListSepatu = new ArrayList<>();
 
 
-    public ArrayList<Sepatu> getDataSepatu(){return ListSepatu;}
-
-    public static void initialData(){
-        Sepatu sepatu = new Sepatu(1,"Kyrie","Nike","Hitam","Basket","Unisex");
-
-        ListSepatu.add(sepatu);
+    public ArrayList<Sepatu> getDataSepatu(){
+        return ListSepatu;
     }
 
+//    public static void initialData(){
+//        Tas tas = new Tas(1,"Dior","Gucci","merah","Backpack","Unisex");
+//
+//        ListTas.add(tas);
+//    }
+
     @Override
-    public void insert(Object x){ListSepatu.add((Sepatu) x);
+    public void insert(Object x){
+        ListSepatu.add((Sepatu) x);
     }
 
     @Override
